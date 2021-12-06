@@ -32,6 +32,7 @@ def sample_poses(objects_to_sample: List[MeshObject], sample_pose_func: Callable
     bvh_cache: Dict[str, mathutils.bvhtree.BVHTree] = {}
 
     # for every selected object
+    place_status = []
     for obj in objects_to_sample:
         no_collision = True
 
@@ -63,3 +64,7 @@ def sample_poses(objects_to_sample: List[MeshObject], sample_pose_func: Callable
             print("Could not place " + obj.get_name() + " without a collision.")
         else:
             print("It took " + str(amount_of_tries_done + 1) + " tries to place " + obj.get_name())
+
+        place_status.append(no_collision)
+
+    return place_status
