@@ -35,6 +35,7 @@ def init(horizon_color: list = [0.05, 0.05, 0.05], compute_device: str = "GPU", 
     prefs = bpy.context.preferences.addons['cycles'].preferences
     # Use cycles
     bpy.context.scene.render.engine = 'CYCLES'
+    #bpy.context.scene.render.engine = 'BLENDER_EEVEE'
 
     if platform == "darwin" or compute_device == "CPU":
         # if there is no gpu support (mac os) or if cpu is specified as compute device, then use the cpu with maximum power
@@ -56,9 +57,9 @@ def init(horizon_color: list = [0.05, 0.05, 0.05], compute_device: str = "GPU", 
             if found:
                 break
         # make sure that all visible GPUs are used
-        for group in prefs.get_devices():
-            for d in group:
-                d.use = True
+        # for group in prefs.get_devices():
+        #     for d in group:
+        #         d.use = True
 
     # Set the Experimental features on/off
     if use_experimental_features:
